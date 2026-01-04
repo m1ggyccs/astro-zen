@@ -69,38 +69,117 @@ const { siteLogo, navLinks } = Astro.props;
     item?.addEventListener("click", toggleMenu);
   });
 
-  // Update navigation based on scroll position with Intersection Observer
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navItems.forEach((item) => {
-            if (item.getAttribute("href") === `#${entry.target.id}`) {
-              item.classList.add("text-white", "md:after:opacity-100");
+  // Flag to temporarily ignore Intersection Observer updates after click
+  let ignoreObserverUpdates = false;
+
+  // Update active navigation on click
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const href = item.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        // Set flag to ignore observer updates temporarily
+        ignoreObserverUpdates = true;
+        
+        // Helper to update active nav
+        const updateNav = () => {
+          navItems.forEach((navItem) => {
+            if (navItem.getAttribute("href") === href) {
+              navItem.classList.add("text-white", "md:after:opacity-100");
             } else {
-              item.classList.remove("text-white", "md:after:opacity-100");
+              navItem.classList.remove("text-white", "md:after:opacity-100");
             }
           });
-        }
-      });
-    },
-    { threshold: 0.5 },
-  );
-
-  document.querySelectorAll("section").forEach((section) => {
-    observer.observe(section);
+        };
+        
+        // Immediately update active state
+        updateNav();
+        
+        // Update again after scroll starts
+        setTimeout(() => {
+          updateNav();
+        }, 100);
+        
+        // Update once more after scroll should complete
+        setTimeout(() => {
+          updateNav();
+        }, 500);
+        
+        // Re-enable observer after scroll completes
+        setTimeout(() => {
+          ignoreObserverUpdates = false;
+        }, 2000);
+      }
+    });
   });
 
-  // Cleanup observer
-  document.onvisibilitychange = () => {
-    if (document.visibilityState === "hidden") {
-      observer.disconnect();
-    } else {
-      document.querySelectorAll("section").forEach((section) => {
-        observer.observe(section);
+  // Update navigation based on scroll position
+  // Use scroll-based calculation instead of Intersection Observer for better sticky content support
+  const updateActiveNavOnScroll = () => {
+    if (ignoreObserverUpdates) return;
+    
+    const sections = document.querySelectorAll("section");
+    const scrollPosition = window.scrollY + window.innerHeight / 3; // Use top third of viewport as reference
+    
+    let activeSectionId = "";
+    let minDistance = Infinity;
+    
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY;
+      const sectionBottom = sectionTop + rect.height;
+      const sectionId = section.id;
+      
+      // Check if scroll position is within this section
+      if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+        // Calculate distance from scroll position to section center
+        const sectionCenter = sectionTop + rect.height / 2;
+        const distance = Math.abs(scrollPosition - sectionCenter);
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeSectionId = sectionId;
+        }
+      }
+    });
+    
+    // If no section found in viewport, find the closest one
+    if (!activeSectionId && sections.length > 0) {
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top + window.scrollY;
+        const sectionCenter = sectionTop + rect.height / 2;
+        const distance = Math.abs(scrollPosition - sectionCenter);
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeSectionId = section.id;
+        }
+      });
+    }
+    
+    // Update navigation based on the active section
+    if (activeSectionId) {
+      navItems.forEach((item) => {
+        if (item.getAttribute("href") === `#${activeSectionId}`) {
+          item.classList.add("text-white", "md:after:opacity-100");
+        } else {
+          item.classList.remove("text-white", "md:after:opacity-100");
+        }
       });
     }
   };
+
+  // Throttle scroll events for better performance
+  let scrollTimeout = 0;
+  window.addEventListener("scroll", () => {
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = window.setTimeout(updateActiveNavOnScroll, 10);
+  }, { passive: true });
+
+  // Initial update
+  updateActiveNavOnScroll();
 </script>
 
 <style>

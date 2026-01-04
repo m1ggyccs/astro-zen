@@ -76,7 +76,7 @@ export const SITE_CONTENT: SiteContent = {
       issuer: "TESDA",
       issuerLogo: "/tesda.png",
       year: "June 2025",
-      credentialId: "GBGZUROFZEKA",
+      credentialId: "",
       link: "https://www.linkedin.com/in/amigsdavid/details/certifications/1749368988702/single-media-viewer/?profileId=ACoAAFG-XRYBEa4IOaSVSg2AQCmRzPQZ3o0Mn2o",
     },
     

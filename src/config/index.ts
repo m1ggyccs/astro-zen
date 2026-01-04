@@ -10,6 +10,7 @@ export const SITE_CONFIG: SiteConfig = {
   navLinks: [
     { text: "Education", href: "#experience" },
     { text: "Projects", href: "#projects" },
+    { text: "Skills", href: "#skills" },
     { text: "About", href: "#about" },
   ],
   socialLinks: [
@@ -82,9 +83,63 @@ export const SITE_CONTENT: SiteContent = {
       image: "/LTHome.png",
     },
   ],
+  skills: {
+    categories: [
+      {
+        name: "Programming Languages",
+        items: [
+          "Python",
+          "JavaScript",
+          "Java",
+          "C++",
+          "SQL",
+          "HTML",
+          "CSS",
+        ],
+      },
+      {
+        name: "Tools and Frameworks",
+        items: [
+          "Next.js",
+          "React.js",
+          "Node.js",
+          "Express.js",
+          "Prisma ORM",
+          "MongoDB",
+          "PostgreSQL",
+          "MySQL",
+          "NumPy",
+          "Pandas",
+          "Scikit-learn",
+          "OpenCV",
+          "Jupyter Notebook",
+          "Git",
+          "GitHub",
+          "Vercel",
+          "pnpm",
+          "npm",
+          "REST APIs",
+        ],
+      },
+      {
+        name: "Soft Skills",
+        items: [
+          "Analytical Thinking",
+          "Critical Thinking",
+          "Problem Solving",
+          "Clear Communication",
+          "Attention to Detail",
+          "Adaptability",
+          "Team Collaboration",
+          "Ownership & Accountability",
+          "Continuous Learning",
+        ],
+      },
+    ],
+  },
   about: {
     description: `
-      Hi, I’m Andrei Miguel David, A Graduating Computer Science Student with a strong software engineering background 
+      Hi, I'm Andrei Miguel David, A Graduating Computer Science Student with a strong software engineering background 
       and a focus on building AI- and data-driven applications. I enjoy developing end-to-end systems that combine solid engineering 
       principles with intelligent, data-informed features to solve real-world problems.
     `,

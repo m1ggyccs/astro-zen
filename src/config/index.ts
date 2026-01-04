@@ -51,7 +51,34 @@ export const SITE_CONTENT: SiteContent = {
       summary: [
         "Focused on software development fundamentals including programming, basic system design, and application development.",
       ],
+     },
+  ],
+  certifications: [
+    {
+      name: "Python Data Associate",
+      issuer: "DataCamp",
+      issuerLogo: "/datacamp.svg",
+      year: "September2025",
+      credentialId: "PDA0016746029284",
+      link: "https://www.datacamp.com/certificate/PDA0016746029284",
     },
+    {
+      name: "Business Analysis & Process Management",
+      issuer: "Coursera",
+      issuerLogo: "/coursera.png",
+      year: "June 2025",
+      credentialId: "GBGZUROFZEKA",
+      link: "https://www.coursera.org/account/accomplishments/verify/GBGZUROFZEKA",
+    },
+    {
+      name: "Microsoft Artificial Intelligence Course (Azure AI Fundamentals)",
+      issuer: "TESDA",
+      issuerLogo: "/tesda.png",
+      year: "June 2025",
+      credentialId: "GBGZUROFZEKA",
+      link: "https://www.linkedin.com/in/amigsdavid/details/certifications/1749368988702/single-media-viewer/?profileId=ACoAAFG-XRYBEa4IOaSVSg2AQCmRzPQZ3o0Mn2o",
+    },
+    
   ],
   projects: [
     {

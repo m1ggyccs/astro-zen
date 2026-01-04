@@ -22,6 +22,7 @@ export interface HeroProps {
   specialty: string;
   summary: string;
   email: string;
+  resumeLink?: string;
 }
 
 export interface ExperienceProps {

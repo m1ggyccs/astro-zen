@@ -29,6 +29,7 @@ export const SITE_CONTENT: SiteContent = {
     summary:
       "Software Engineer based in Manila, Philippines. I specialize in production-ready software systems that integrate AI and data to solve real-world problems.",
     email: "amigsdavid@gmail.com",
+    resumeLink: "https://drive.google.com/file/d/1Aei8PAEHYl5ucyiET5bNZ44ZkHQ3IJ7n/view?usp=sharing"
   },
   experience: [
     // Example: Replace with your education, courses, or certifications

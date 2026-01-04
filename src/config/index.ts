@@ -4,7 +4,7 @@ export const SITE_CONFIG: SiteConfig = {
   title: "Andrei Miguel David — Work Portfolio",
   author: "Andrei Miguel David",
   description:
-    "Software Engineer based in Manila, Philippines. I specialize in production-ready software systems that integrate AI and data to solve real-world problems.",
+    "A Software Engineer based in Manila, Philippines. I specialize in production-ready software systems that integrate AI and data to solve real-world problems.",
   lang: "en",
   siteLogo: "/miggy-small.jpg",
   navLinks: [

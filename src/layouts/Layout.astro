@@ -17,10 +17,13 @@ const {
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
 } = SITE_CONFIG;
 
-// Ensure OG image URL is absolute
+// Ensure OG image URL is absolute with cache-busting
 const ogImgUrl = socialImage.startsWith('http') 
   ? socialImage 
   : new URL(socialImage, canonicalURL).href;
+// Add cache-busting query parameter - increment this number when you change the image
+const OG_IMAGE_VERSION = "2";
+const ogImgUrlWithCache = `${ogImgUrl}?v=${OG_IMAGE_VERSION}`;
 ---
 
 <!doctype html>
@@ -37,7 +40,7 @@ const ogImgUrl = socialImage.startsWith('http')
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={ogImgUrl} />
+    <meta property="og:image" content={ogImgUrlWithCache} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
@@ -46,7 +49,7 @@ const ogImgUrl = socialImage.startsWith('http')
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImgUrl} />
+    <meta name="twitter:image" content={ogImgUrlWithCache} />
   </head>
   <body class="bg-black font-sans">
     <Header siteLogo={siteLogo} navLinks={navLinks} />

@@ -17,7 +17,7 @@ export const SITE_CONFIG: SiteConfig = {
     { text: "Github", href: "https://github.com/m1ggyccs" },
     { text: "Kaggle", href: "https://www.kaggle.com/andreimigueldavid" }
   ],
-  socialImage: "/m1ggyhome.png",
+  socialImage: "/og-image.png",
   canonicalURL: "https://m1ggyccs.vercel.app",
 };
 
